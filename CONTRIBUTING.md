@@ -15,6 +15,11 @@ No somos una empresa. No tenemos un departamento de onboarding.
 Somos un grupo pequeño trabajando desde un valle remoto en la Patagonia chilena,
 convencidos de que el código abierto puede ayudar a proteger lo que queda del planeta.
 
+No somos una consultora externa sin conexión con el territorio. Somos personas
+con una década de trabajo en la zona, miembros de las organizaciones que administran
+el territorio y con vínculos profundos con las comunidades, los arrieros, los guías
+y las familias que lo habitan.
+
 Si eso resuena contigo, eres bienvenido.
 
 ---
@@ -59,6 +64,11 @@ Este es un Hippie Hub. Eso significa:
 - Si algo que construiste ayuda a proteger un bosque en África o una reserva en los Andes, 
   eso es exactamente lo que buscamos
 
+Los problemas listados aquí son reales. Vienen de una década de trabajo
+en el territorio y de vínculos profundos con las comunidades, organizaciones
+y personas que lo habitan. No podemos garantizar implementación — pero sí
+podemos garantizar que la conversación llega a las personas correctas.
+
 ---
 
 ## Idiomas
@@ -68,4 +78,4 @@ estar en cualquiera de los dos. No te preocupes por el idioma — preocúpate po
 
 ---
 
-*Naveguemos la vanguardia.*ONTRIBUTING.md:
+*Naveguemos la vanguardia.*
