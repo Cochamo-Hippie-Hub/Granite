@@ -5,8 +5,7 @@
 Granite is organized in three layers. Each layer can be developed independently.
 You don't need to understand the full stack to contribute to one part of it.
 
-A wilderness landscape spanning hundreds of thousands of hectares across the Cochamó valley and cordillera,
-15,000 visitors per season, one dirt road in, no mobile coverage beyond the trailhead.
+A wilderness landscape spanning hundreds of thousands of hectares across the Cochamó valley and cordillera. Granite walls rising 1,000 meters — among the largest on the planet, surpassing El Capitan in Yosemite in height and complexity. No mobile coverage beyond the trailhead.
 Every technical decision starts there.
 
 ---
