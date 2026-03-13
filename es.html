@@ -405,7 +405,7 @@
   <h2 class="reveal">Naveguemos<br><em>la vanguardia.</em></h2>
   <p class="reveal">Eres conservacionista, biólogo, ingeniero, arriero, guía, investigador, escalador, o simplemente alguien que conoce el valle y tiene una opinión sobre estos problemas — hay un lugar para ti aquí.</p>
   <div class="participa-links reveal">
-    <a href="/cdn-cgi/l/email-protection#187b777b7079757770716868717d706d7a587f75797174367b7775" class="btn btn-accent">Escribirnos →</a>
+    <a href="mailto:cochamohippiehub@gmail.com" class="btn btn-accent">Escribirnos →</a>
     <a href="https://github.com/Cochamo-Hippie-Hub/Granite" target="_blank" class="btn btn-ghost">Ver en GitHub</a>
     <a href="https://x.com/CochamoHippie" target="_blank" class="btn btn-ghost">@CochamoHippie</a>
   </div>
@@ -413,7 +413,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-copy">© 2026 Cochamó Hippie Hub · Licencia MIT · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddbeb2beb5bcb0b2b5b4adadb4b8b5a8bf9dbab0bcb4b1f3beb2b0">[email&#160;protected]</a></span>
+  <span class="footer-copy">© 2026 Cochamó Hippie Hub · Licencia MIT · cochamohippiehub@gmail.com</span>
   <ul class="footer-nav">
     <li><a href="https://github.com/Cochamo-Hippie-Hub/Granite" target="_blank">GitHub</a></li>
     <li><a href="https://x.com/CochamoHippie" target="_blank">X</a></li>
@@ -423,5 +423,11 @@
   <span class="footer-slogan">Naveguemos la vanguardia.</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const ob
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)} });
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
