@@ -424,5 +424,22 @@
   <span class="footer-slogan">Naveguemos la vanguardia.</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const ob
+<script>
+  setTimeout(function() {
+    var els = document.querySelectorAll('.reveal');
+    for (var i = 0; i < els.length; i++) els[i].classList.add('visible');
+  }, 500);
+  if (window.IntersectionObserver) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0, rootMargin: '0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+  }
+</script>
+</body>
+</html>
