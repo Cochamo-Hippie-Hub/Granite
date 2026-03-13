@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Opina — Cochamó</title>
+  <meta name="description" content="Cuéntanos qué problema del valle te parece más urgente.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --granite:#0e0e0f;--slate:#1a1a1c;--seam:#2a2a2e;
+      --chalk:#e8e3da;--moss:#5a7a4a;--lichen:#8ab87a;
+      --muted:#6a6a72;--rust:#c86432;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--granite);color:var(--chalk);
+      font-family:'JetBrains Mono',monospace;
+      font-size:15px;line-height:1.6;
+      min-height:100vh;padding-bottom:4rem;
+    }
+
+    /* HEADER */
+    header{
+      padding:2rem 1.5rem 1.5rem;
+      border-bottom:1px solid var(--seam);
+      text-align:center;
+    }
+    .header-tag{
+      font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--lichen);margin-bottom:.8rem;
+    }
+    header h1{
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(1.8rem,6vw,2.8rem);
+      font-weight:400;line-height:1.1;color:var(--chalk);
+      margin-bottom:.6rem;
+    }
+    header h1 em{font-style:italic;color:var(--lichen)}
+    header p{color:var(--muted);font-size:13px;max-width:340px;margin:0 auto}
+
+    /* FORM WRAPPER */
+    .form-wrap{max-width:480px;margin:0 auto;padding:2rem 1.5rem}
+
+    /* STEP */
+    .step{display:none}
+    .step.active{display:block}
+
+    .step-label{
+      font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--moss);margin-bottom:.5rem;
+    }
+    .step h2{
+      font-family:'DM Serif Display',serif;
+      font-size:1.5rem;font-weight:400;
+      color:var(--chalk);margin-bottom:1.5rem;line-height:1.2;
+    }
+
+    /* PROBLEM OPTIONS */
+    .options{display:flex;flex-direction:column;gap:.6rem}
+    .option{
+      display:flex;align-items:flex-start;gap:.8rem;
+      padding:1rem;border:1px solid var(--seam);
+      background:transparent;cursor:pointer;
+      transition:all .2s;text-align:left;width:100%;
+      color:var(--chalk);font-family:'JetBrains Mono',monospace;
+    }
+    .option:hover,.option.selected{
+      background:var(--slate);border-color:var(--lichen);
+    }
+    .option.selected .opt-num{color:var(--lichen)}
+    .opt-num{
+      font-size:11px;color:var(--muted);letter-spacing:.1em;
+      min-width:28px;padding-top:.1rem;flex-shrink:0;
+    }
+    .opt-text{font-size:13px;line-height:1.5;color:var(--chalk)}
+
+    /* TEXTAREA */
+    .field-label{
+      font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:.6rem;display:block;
+    }
+    textarea{
+      width:100%;background:var(--slate);border:1px solid var(--seam);
+      color:var(--chalk);font-family:'JetBrains Mono',monospace;
+      font-size:14px;line-height:1.6;padding:1rem;
+      resize:none;outline:none;min-height:120px;
+      transition:border-color .2s;
+    }
+    textarea:focus{border-color:var(--lichen)}
+    textarea::placeholder{color:var(--muted)}
+
+    input[type="text"]{
+      width:100%;background:var(--slate);border:1px solid var(--seam);
+      color:var(--chalk);font-family:'JetBrains Mono',monospace;
+      font-size:14px;padding:.9rem 1rem;outline:none;
+      transition:border-color .2s;
+    }
+    input[type="text"]:focus{border-color:var(--lichen)}
+    input[type="text"]::placeholder{color:var(--muted)}
+
+    .field-hint{
+      font-size:11px;color:var(--muted);margin-top:.4rem;
+    }
+
+    /* BUTTONS */
+    .btn-next{
+      width:100%;padding:1rem;margin-top:1.5rem;
+      background:var(--moss);color:var(--chalk);
+      font-family:'JetBrains Mono',monospace;
+      font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+      border:none;cursor:pointer;transition:background .2s;
+    }
+    .btn-next:hover{background:var(--lichen);color:var(--granite)}
+    .btn-next:disabled{background:var(--seam);color:var(--muted);cursor:not-allowed}
+
+    .btn-back{
+      background:none;border:none;color:var(--muted);
+      font-family:'JetBrains Mono',monospace;
+      font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+      cursor:pointer;padding:.5rem 0;margin-top:.8rem;
+      display:flex;align-items:center;gap:.4rem;
+    }
+    .btn-back:hover{color:var(--chalk)}
+
+    /* PROGRESS */
+    .progress{
+      display:flex;gap:.3rem;margin-bottom:2rem;
+    }
+    .progress-dot{
+      height:3px;flex:1;background:var(--seam);transition:background .3s;
+    }
+    .progress-dot.done{background:var(--lichen)}
+    .progress-dot.active{background:var(--moss)}
+
+    /* SELECTED SUMMARY */
+    .selected-summary{
+      padding:.8rem 1rem;background:var(--slate);
+      border-left:3px solid var(--lichen);
+      font-size:12px;color:var(--chalk);margin-bottom:1.5rem;
+      line-height:1.5;
+    }
+    .selected-summary span{color:var(--muted);font-size:11px;display:block;margin-bottom:.2rem}
+
+    /* GRACIAS */
+    .gracias{text-align:center;padding:3rem 1rem}
+    .gracias-icon{font-size:2.5rem;margin-bottom:1rem}
+    .gracias h2{
+      font-family:'DM Serif Display',serif;font-size:2rem;
+      font-weight:400;color:var(--chalk);margin-bottom:.8rem;
+    }
+    .gracias p{color:var(--muted);font-size:13px;max-width:300px;margin:0 auto 1.5rem}
+    .gracias a{color:var(--lichen);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+
+    /* DIVIDER */
+    .divider{border:none;border-top:1px solid var(--seam);margin:1.5rem 0}
+  </style>
+</head>
+<body>
+
+<header>
+  <p class="header-tag">Cochamó Hippie Hub</p>
+  <h1>Tu opinión<br>importa en <em>el valle.</em></h1>
+  <p>Toma 2 minutos. Sin registro. Sin complicaciones.</p>
+</header>
+
+<div class="form-wrap">
+
+  <!-- STEP 1: Elegir problema -->
+  <div class="step active" id="step1">
+    <div class="progress">
+      <div class="progress-dot active" id="d1"></div>
+      <div class="progress-dot" id="d2"></div>
+      <div class="progress-dot" id="d3"></div>
+    </div>
+    <p class="step-label">Paso 1 de 3</p>
+    <h2>¿Qué problema del valle te parece más urgente?</h2>
+    <div class="options" id="options">
+      <button class="option" onclick="selectOption(this, 1)">
+        <span class="opt-num">01</span>
+        <span class="opt-text">Erosión de senderos en el Camino del Valle</span>
+      </button>
+      <button class="option" onclick="selectOption(this, 2)">
+        <span class="opt-num">02</span>
+        <span class="opt-text">Seguridad en rutas de montaña — no hay forma de saber quién está adentro</span>
+      </button>
+      <button class="option" onclick="selectOption(this, 3)">
+        <span class="opt-num">03</span>
+        <span class="opt-text">Sin sistema de reservas para los campamentos del valle</span>
+      </button>
+      <button class="option" onclick="selectOption(this, 4)">
+        <span class="opt-num">04</span>
+        <span class="opt-text">Reservar un arriero depende de un solo email para todo el territorio</span>
+      </button>
+      <button class="option" onclick="selectOption(this, 5)">
+        <span class="opt-num">05</span>
+        <span class="opt-text">Campamentos remotos que casi nadie visita</span>
+      </button>
+      <button class="option" onclick="selectOption(this, 6)">
+        <span class="opt-num">06</span>
+        <span class="opt-text">Basura y residuos con 15.000 visitantes por temporada</span>
+      </button>
+      <button class="option" onclick="selectOption(this, 7)">
+        <span class="opt-num">07</span>
+        <span class="opt-text">Escaladores en los valles altos sin registro ni infraestructura de emergencia</span>
+      </button>
+      <button class="option" onclick="selectOption(this, 8)">
+        <span class="opt-num">08</span>
+        <span class="opt-text">Visón americano en los valles altos — depredador invasor sin control</span>
+      </button>
+      <button class="option" onclick="selectOption(this, 9)">
+        <span class="opt-num">09</span>
+        <span class="opt-text">Casi ningún monitoreo de animales y plantas en el territorio</span>
+      </button>
+      <button class="option" onclick="selectOption(this, 10)">
+        <span class="opt-num">+</span>
+        <span class="opt-text">Hay otro problema que no está en esta lista</span>
+      </button>
+    </div>
+    <button class="btn-next" id="btn1" disabled onclick="goTo(2)">Siguiente →</button>
+  </div>
+
+  <!-- STEP 2: Opinar -->
+  <div class="step" id="step2">
+    <div class="progress">
+      <div class="progress-dot done"></div>
+      <div class="progress-dot active"></div>
+      <div class="progress-dot"></div>
+    </div>
+    <p class="step-label">Paso 2 de 3</p>
+    <h2>Cuéntanos más</h2>
+
+    <div class="selected-summary" id="summary">
+      <span>Problema seleccionado</span>
+      <span id="summary-text"></span>
+    </div>
+
+    <div id="otro-field" style="display:none;margin-bottom:1.2rem">
+      <label class="field-label">¿Cuál es el problema?</label>
+      <input type="text" id="otro-input" placeholder="Descríbelo en pocas palabras..." maxlength="200">
+    </div>
+
+    <label class="field-label">¿Qué piensas sobre este problema?</label>
+    <textarea id="opinion" placeholder="Cuéntanos lo que sabes, lo que ves, lo que te preocupa..." maxlength="800"></textarea>
+
+    <hr class="divider">
+
+    <label class="field-label">¿Se te ocurre alguna solución? <span style="color:var(--muted);text-transform:none;letter-spacing:0">(opcional)</span></label>
+    <textarea id="solucion" placeholder="Cualquier idea sirve, por pequeña que parezca..." maxlength="600" style="min-height:90px"></textarea>
+
+    <button class="btn-next" onclick="goTo(3)">Siguiente →</button>
+    <button class="btn-back" onclick="goTo(1)">← Volver</button>
+  </div>
+
+  <!-- STEP 3: Datos opcionales + envío -->
+  <div class="step" id="step3">
+    <div class="progress">
+      <div class="progress-dot done"></div>
+      <div class="progress-dot done"></div>
+      <div class="progress-dot active"></div>
+    </div>
+    <p class="step-label">Paso 3 de 3</p>
+    <h2>Último paso</h2>
+
+    <label class="field-label">¿Cómo te llamas? <span style="color:var(--muted);text-transform:none;letter-spacing:0">(opcional)</span></label>
+    <input type="text" id="nombre" placeholder="Tu nombre o apodo..." maxlength="100">
+    <p class="field-hint">Puedes quedar en anonimato si prefieres.</p>
+
+    <div style="margin-top:1.2rem">
+      <label class="field-label">¿Tienes relación con el valle? <span style="color:var(--muted);text-transform:none;letter-spacing:0">(opcional)</span></label>
+      <select id="relacion" style="width:100%;background:var(--slate);border:1px solid var(--seam);color:var(--chalk);font-family:'JetBrains Mono',monospace;font-size:13px;padding:.9rem 1rem;outline:none;appearance:none;cursor:pointer">
+        <option value="" style="background:var(--slate)">Prefiero no decir</option>
+        <option value="habitante" style="background:var(--slate)">Vivo en la zona</option>
+        <option value="arriero" style="background:var(--slate)">Soy arriero o guía</option>
+        <option value="visitante" style="background:var(--slate)">Visito el valle seguido</option>
+        <option value="investigador" style="background:var(--slate)">Investigador o biólogo</option>
+        <option value="escalador" style="background:var(--slate)">Escalador</option>
+        <option value="otro" style="background:var(--slate)">Otro</option>
+      </select>
+    </div>
+
+    <button class="btn-next" onclick="enviar()" id="btn-enviar">Enviar mi opinión ✓</button>
+    <button class="btn-back" onclick="goTo(2)">← Volver</button>
+  </div>
+
+  <!-- GRACIAS -->
+  <div class="step" id="step-gracias">
+    <div class="gracias">
+      <div class="gracias-icon">🌿</div>
+      <h2>Gracias.</h2>
+      <p>Tu opinión llega directo al equipo de Cochamó Hippie Hub. Cada voz del valle cuenta.</p>
+      <a href="es.html">← Volver al sitio</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FORMSPREE hidden form -->
+<form id="formspree-form" action="https://formspree.io/f/mqeybnka" method="POST" style="display:none">
+  <input type="hidden" name="problema" id="f-problema">
+  <input type="hidden" name="problema_otro" id="f-otro">
+  <input type="hidden" name="opinion" id="f-opinion">
+  <input type="hidden" name="solucion" id="f-solucion">
+  <input type="hidden" name="nombre" id="f-nombre">
+  <input type="hidden" name="relacion" id="f-relacion">
+  <input type="hidden" name="_subject" value="Nueva opinión — Cochamó Hippie Hub">
+</form>
+
+<script>
+  var selectedIndex = -1;
+  var selectedText = '';
+  var problemas = [
+    'Erosión de senderos en el Camino del Valle',
+    'Seguridad en rutas de montaña — no hay forma de saber quién está adentro',
+    'Sin sistema de reservas para los campamentos del valle',
+    'Reservar un arriero depende de un solo email para todo el territorio',
+    'Campamentos remotos que casi nadie visita',
+    'Basura y residuos con 15.000 visitantes por temporada',
+    'Escaladores en los valles altos sin registro ni infraestructura de emergencia',
+    'Visón americano en los valles altos — depredador invasor sin control',
+    'Casi ningún monitoreo de animales y plantas en el territorio',
+    'Otro problema'
+  ];
+
+  function selectOption(btn, idx) {
+    document.querySelectorAll('.option').forEach(function(o){ o.classList.remove('selected'); });
+    btn.classList.add('selected');
+    selectedIndex = idx;
+    selectedText = problemas[idx - 1];
+    document.getElementById('btn1').disabled = false;
+  }
+
+  function goTo(step) {
+    document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
+    if (step === 2) {
+      document.getElementById('summary-text').textContent = selectedText;
+      document.getElementById('otro-field').style.display = selectedIndex === 10 ? 'block' : 'none';
+      document.getElementById('step2').classList.add('active');
+    } else if (step === 3) {
+      document.getElementById('step3').classList.add('active');
+    } else {
+      document.getElementById('step1').classList.add('active');
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function enviar() {
+    var btn = document.getElementById('btn-enviar');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    document.getElementById('f-problema').value = selectedText;
+    document.getElementById('f-otro').value = document.getElementById('otro-input').value;
+    document.getElementById('f-opinion').value = document.getElementById('opinion').value;
+    document.getElementById('f-solucion').value = document.getElementById('solucion').value;
+    document.getElementById('f-nombre').value = document.getElementById('nombre').value;
+    document.getElementById('f-relacion').value = document.getElementById('relacion').value;
+
+    var form = document.getElementById('formspree-form');
+    var data = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(r) {
+      document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
+      document.getElementById('step-gracias').classList.add('active');
+      window.scrollTo(0, 0);
+    }).catch(function() {
+      // Show gracias anyway - don't leave user hanging
+      document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
+      document.getElementById('step-gracias').classList.add('active');
+      window.scrollTo(0, 0);
+    });
+  }
+</script>
+
+</body>
+</html>
