@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Opina — Cochamó</title>
+  <meta name="description" content="Cuéntanos qué problema del valle te parece más urgente.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --granite:#0e0e0f;--slate:#1a1a1c;--seam:#2a2a2e;
+      --chalk:#e8e3da;--moss:#5a7a4a;--lichen:#8ab87a;
+      --muted:#6a6a72;--rust:#c86432;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--granite);color:var(--chalk);
+      font-family:'JetBrains Mono',monospace;
+      font-size:15px;line-height:1.6;
+      min-height:100vh;padding-bottom:4rem;
+    }
+    header{
+      padding:2rem 1.5rem 1.5rem;
+      border-bottom:1px solid var(--seam);
+      text-align:center;
+    }
+    .header-tag{
+      font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--lichen);margin-bottom:.8rem;
+    }
+    header h1{
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(1.8rem,6vw,2.8rem);
+      font-weight:400;line-height:1.1;color:var(--chalk);
+      margin-bottom:.6rem;
+    }
+    header h1 em{font-style:italic;color:var(--lichen)}
+    header p{color:var(--muted);font-size:13px;max-width:340px;margin:0 auto}
+    .form-wrap{max-w
