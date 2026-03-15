@@ -17,3 +17,9 @@
 - Presenta desafíos para la segmentación semántica (chunks) por su estructura retórica elaborada
 
 *Marcado como esencial - 15-03-2026*
+
+
+---
+> 3. Invierte la relación tradicional - En lugar de suplicar benevolencia, otorga al lector total libertad de criterio: "puedes decir de la historia todo aquello que te pareciere"
+
+*Marcado como esencial - 15-03-2026*
