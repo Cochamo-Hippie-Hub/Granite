@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Granite Check-in · Cochamó Hippie Hub</title>
+<meta name="description" content="Offline-first climber and hiker safety check-in system for the Cochamó Valley.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0e0f;--surface:#1a1a1c;--border:#2a2a2e;--text:#e8e3da;--muted:#6a6a72;--moss:#5a7a4a;--lichen:#8ab87a;--rust:#c86432;--alert:#d44;--safe:#4a9a6a;--sky:#6a9ab8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;min-height:100vh}
+.app{max-width:720px;margin:0 auto;padding:1rem}
+header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.logo{font-size:11px;font-weight:500;letter-spacing:.12em;color:var(--lichen);text-transform:uppercase}
+.logo span{color:var(--muted);font-weight:300}
+.header-actions{display:flex;gap:.5rem;align-items:center}
+.btn-sm{padding:.3rem .7rem;font-family:inherit;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--border);cursor:pointer;transition:all .2s}
+.btn-sm:hover{color:var(--text);border-color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.5rem}
+.stat-card{background:var(--surface);padding:1rem;border:1px solid var(--border);text-align:center}
+.stat-n{font-size:1.8rem;font-weight:500;line-height:1}
+.stat-n.green{color:var(--lichen)}.stat-n.amber{color:var(--rust)}.stat-n.red{color:var(--alert)}
+.stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.tab{padding:.6rem 1.2rem;font-family:inherit;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--muted);border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.tab.active{color:var(--lichen);border-bottom-color:var(--lichen)}
+.panel{display:none}.panel.active{display:block}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.6rem .8rem;font-family:inherit;font-size:13px;background:var(--surface);color:var(--text);border:1px solid var(--border);outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus{border-color:var(--moss)}
+.form-group select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236a6a72' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+textarea{resize:vertical;min-height:60px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem 1.5rem;font-family:inherit;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;width:100%}
+.btn-primary{background:var(--moss);color:var(--text)}.btn-primary:hover{background:var(--lichen);color:var(--bg)}
+.visitor-list{display:flex;flex-direction:column;gap:.5rem}
+.visitor-card{background:var(--surface);border:1px solid var(--border);padding:.8rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:.8rem}
+.visitor-card.overdue{border-color:var(--alert);border-left:3px solid var(--alert)}
+.visitor-card.safe{border-left:3px solid var(--safe)}
+.visitor-info{flex:1;min-width:0}.visitor-name{font-weight:500;font-size:14px}
+.visitor-detail{font-size:11px;color:var(--muted);margin-top:.2rem}
+.visitor-status{font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;white-space:nowrap}
+.status-active{color:var(--lichen);border:1px solid var(--moss)}
+.status-overdue{color:var(--alert);border:1px solid var(--alert);animation:pulse 2s infinite}
+.status-out{color:var(--muted);border:1px solid var(--border)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.checkout-btn{padding:.3rem .6rem;font-family:inherit;font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:var(--safe);color:var(--text);border:none;cursor:pointer;margin-left:.5rem}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--muted)}
+.footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.footer-text{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.offline-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:10px;padding:.2rem .5rem;letter-spacing:.06em;text-transform:uppercase}
+.offline-badge.online{color:var(--lichen);border:1px solid var(--moss)}
+.offline-badge.offline{color:var(--rust);border:1px solid var(--rust)}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block}.dot.on{background:var(--lichen)}.dot.off{background:var(--rust)}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr 1fr}.stat-n{font-size:1.4rem}.visitor-card{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">Granite <span>check-in</span></div>
+    <div class="header-actions">
+      <span id="connBadge" class="offline-badge offline"><span class="dot off"></span> offline</span>
+      <button class="btn-sm" onclick="toggleLang()" id="langBtn">EN</button>
+    </div>
+  </header>
+  <div class="stats">
+    <div class="stat-card"><div class="stat-n green" id="statActive">0</div><div class="stat-label" data-i18n="stats.active">En el valle</div></div>
+    <div class="stat-card"><div class="stat-n amber" id="statOverdue">0</div><div class="stat-label" data-i18n="stats.overdue">Atrasados</div></div>
+    <div class="stat-card"><div class="stat-n" style="color:var(--sky)" id="statTotal">0</div><div class="stat-label" data-i18n="stats.total">Total hoy</div></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="showPanel('checkin')" data-i18n="tab.checkin" id="tabCheckin">Registrar entrada</button>
+    <button class="tab" onclick="showPanel('dashboard')" data-i18n="tab.dashboard" id="tabDashboard">Visitantes</button>
+    <button class="tab" onclick="showPanel('history')" data-i18n="tab.history" id="tabHistory">Historial</button>
+  </div>
+  <!-- CHECK-IN FORM -->
+  <div class="panel active" id="panelCheckin">
+    <div class="form-group">
+      <label data-i18n="form.name">Nombre del visitante o grupo</label>
+      <input type="text" id="fName" autocomplete="off">
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label data-i18n="form.group">Personas en el grupo</label><input type="number" id="fGroup" value="1" min="1" max="30"></div>
+      <div class="form-group"><label data-i18n="form.nationality">Nacionalidad</label><input type="text" id="fNat"></div>
+    </div>
+    <div class="form-group">
+      <label data-i18n="form.destination">Destino</label>
+      <select id="fDest">
+        <option value="la-junta">La Junta</option>
+        <option value="anfiteatro">El Anfiteatro</option>
+        <option value="trinidad">Cerro Trinidad</option>
+        <option value="arcoiris">Mirador Arco Iris</option>
+        <option value="vidal-gormaz">Lago Vidal Gormaz</option>
+        <option value="manso">Valle del Manso</option>
+        <option value="steffen">Río Steffen</option>
+        <option value="otro">Otro / Other</option>
+      </select>
+    </div>
+    <div class="form-group" id="destOtherWrap" style="display:none">
+      <label data-i18n="form.dest_other">Especificar destino</label>
+      <input type="text" id="fDestOther">
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label data-i18n="form.activity">Actividad principal</label>
+        <select id="fActivity">
+          <option value="trekking">Trekking</option>
+          <option value="climbing">Escalada / Climbing</option>
+          <option value="camping">Camping</option>
+          <option value="cabalgata">Cabalgata</option>
+          <option value="research">Investigación</option>
+          <option value="volunteer">Voluntariado</option>
+          <option value="other">Otro / Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label data-i18n="form.return">Retorno esperado</label><input type="date" id="fReturn"></div>
+    </div>
+    <div class="form-group">
+      <label data-i18n="form.notes">Notas (contacto de emergencia, equipo, etc.)</label>
+      <textarea id="fNotes" rows="2"></textarea>
+    </div>
+    <button class="btn btn-primary" onclick="doCheckin()" data-i18n="form.submit">Registrar check-in</button>
+  </div>
+  <!-- DASHBOARD -->
+  <div class="panel" id="panelDashboard"><div class="visitor-list" id="activeList"></div></div>
+  <!-- HISTORY -->
+  <div class="panel" id="panelHistory"><div class="visitor-list" id="historyList"></div></div>
+  <div class="footer">
+    <span class="footer-text">Cochamó Hippie Hub · Granite v0.1</span>
+    <div style="display:flex;gap:.5rem">
+      <button class="btn-sm" onclick="exportData()" data-i18n="footer.export">Exportar JSON</button>
+      <button class="btn-sm" onclick="confirmClear()" data-i18n="footer.clear" style="color:var(--alert);border-color:var(--alert)">Limpiar datos</button>
+    </div>
+  </div>
+</div>
+<script>
+const STORAGE_KEY='granite-checkin-v1';let lang='es';
+const i18n={es:{'stats.active':'En el valle','stats.overdue':'Atrasados','stats.total':'Total hoy','tab.checkin':'Registrar entrada','tab.dashboard':'Visitantes','tab.history':'Historial','form.name':'Nombre del visitante o grupo','form.group':'Personas en el grupo','form.nationality':'Nacionalidad','form.destination':'Destino','form.dest_other':'Especificar destino','form.activity':'Actividad principal','form.return':'Retorno esperado','form.notes':'Notas (contacto de emergencia, equipo, etc.)','form.submit':'Registrar check-in','footer.export':'Exportar JSON','footer.clear':'Limpiar datos','empty.active':'No hay visitantes activos en el valle','empty.history':'Sin registros aún','btn.checkout':'Check-out','confirm.clear':'¿Eliminar todos los registros? Esta acción no se puede deshacer.','confirm.checkout':'¿Confirmar check-out de','alert.name':'Ingrese el nombre del visitante','alert.return':'Ingrese la fecha de retorno esperada','status.active':'En ruta','status.overdue':'Atrasado','status.out':'Salió','label.people':'personas','label.return':'Retorno','label.checked_out':'Salió'},
+en:{'stats.active':'In valley','stats.overdue':'Overdue','stats.total':'Total today','tab.checkin':'Check in','tab.dashboard':'Visitors','tab.history':'History','form.name':'Visitor or group name','form.group':'People in group','form.nationality':'Nationality','form.destination':'Destination','form.dest_other':'Specify destination','form.activity':'Main activity','form.return':'Expected return','form.notes':'Notes (emergency contact, gear, etc.)','form.submit':'Register check-in','footer.export':'Export JSON','footer.clear':'Clear data','empty.active':'No active visitors in the valley','empty.history':'No records yet','btn.checkout':'Check out','confirm.clear':'Delete all records? This cannot be undone.','confirm.checkout':'Confirm check-out for','alert.name':'Enter visitor name','alert.return':'Enter expected return date','status.active':'In route','status.overdue':'Overdue','status.out':'Returned','label.people':'people','label.return':'Return','label.checked_out':'Returned'}};
+function t(k){return i18n[lang][k]||k}
+function toggleLang(){lang=lang==='es'?'en':'es';document.getElementById('langBtn').textContent=lang==='es'?'EN':'ES';document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n)});render()}
+function loadData(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[]}catch{return[]}}
+function saveData(r){localStorage.setItem(STORAGE_KEY,JSON.stringify(r))}
+function showPanel(name){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('panel'+name.charAt(0).toUpperCase()+name.slice(1)).classList.add('active');const m={checkin:'tabCheckin',dashboard:'tabDashboard',history:'tabHistory'};document.getElementById(m[name]).classList.add('active');render()}
+function doCheckin(){
+  const name=document.getElementById('fName').value.trim();
+  const group=parseInt(document.getElementById('fGroup').value)||1;
+  const nat=document.getElementById('fNat').value.trim();
+  const dest=document.getElementById('fDest').value;
+  const destOther=document.getElementById('fDestOther').value.trim();
+  const activity=document.getElementById('fActivity').value;
+  const returnDate=document.getElementById('fReturn').value;
+  const notes=document.getElementById('fNotes').value.trim();
+  if(!name){alert(t('alert.name'));return}
+  if(!returnDate){alert(t('alert.return'));return}
+  const record={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),name,group,nationality:nat,destination:dest==='otro'?destOther:dest,activity,returnDate,notes,checkinTime:new Date().toISOString(),checkoutTime:null,status:'active'};
+  const records=loadData();records.unshift(record);saveData(records);
+  document.getElementById('fName').value='';document.getElementById('fGroup').value='1';document.getElementById('fNat').value='';document.getElementById('fDest').selectedIndex=0;document.getElementById('fDestOther').value='';document.getElementById('fActivity').selectedIndex=0;document.getElementById('fNotes').value='';
+  render();showPanel('dashboard');
+}
+function doCheckout(id){const records=loadData();const rec=records.find(r=>r.id===id);if(!rec)return;if(!confirm(t('confirm.checkout')+' '+rec.name+'?'))return;rec.checkoutTime=new Date().toISOString();rec.status='out';saveData(records);render()}
+function isOverdue(rec){if(rec.status!=='active')return false;return new Date()>new Date(rec.returnDate+'T23:59:59')}
+function formatDate(iso){if(!iso)return'-';return new Date(iso).toLocaleDateString(lang==='es'?'es-CL':'en-US',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}
+function formatReturnDate(d){return new Date(d+'T12:00:00').toLocaleDateString(lang==='es'?'es-CL':'en-US',{day:'numeric',month:'short',year:'numeric'})}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+const destMap={'la-junta':'La Junta','anfiteatro':'El Anfiteatro','trinidad':'Cerro Trinidad','arcoiris':'Mirador Arco Iris','vidal-gormaz':'Lago Vidal Gormaz','manso':'Valle del Manso','steffen':'Río Steffen'};
+function destLabel(c){return destMap[c]||c}
+function render(){
+  const records=loadData(),now=new Date(),todayStr=now.toISOString().slice(0,10);
+  const active=records.filter(r=>r.status==='active'),overdue=active.filter(r=>isOverdue(r)),todayTotal=records.filter(r=>r.checkinTime.slice(0,10)===todayStr);
+  document.getElementById('statActive').textContent=active.length;
+  document.getElementById('statOverdue').textContent=overdue.length;
+  document.getElementById('statTotal').textContent=todayTotal.length;
+  const activeEl=document.getElementById('activeList');
+  if(!active.length){activeEl.innerHTML='<div class="empty-state"><div style="font-size:2rem;margin-bottom:.5rem">&#9968;</div><div>'+t('empty.active')+'</div></div>'}
+  else{activeEl.innerHTML=active.map(r=>{const od=isOverdue(r);return'<div class="visitor-card '+(od?'overdue':'safe')+'"><div class="visitor-info"><div class="visitor-name">'+esc(r.name)+' <span style="font-weight:300;color:var(--muted)">('+r.group+' '+t('label.people')+')</span></div><div class="visitor-detail">'+destLabel(r.destination)+' · '+r.activity+(r.nationality?' · '+esc(r.nationality):'')+'</div><div class="visitor-detail">'+t('label.return')+': '+formatReturnDate(r.returnDate)+' · In: '+formatDate(r.checkinTime)+'</div>'+(r.notes?'<div class="visitor-detail" style="color:var(--sky)">'+esc(r.notes)+'</div>':'')+'</div><span class="visitor-status '+(od?'status-overdue':'status-active')+'">'+(od?t('status.overdue'):t('status.active'))+'</span><button class="checkout-btn" onclick="doCheckout(\''+r.id+'\')">'+t('btn.checkout')+'</button></div>'}).join('')}
+  const histEl=document.getElementById('historyList'),completed=records.filter(r=>r.status==='out').slice(0,50);
+  if(!completed.length){histEl.innerHTML='<div class="empty-state"><div style="font-size:2rem;margin-bottom:.5rem">&#128214;</div><div>'+t('empty.history')+'</div></div>'}
+  else{histEl.innerHTML=completed.map(r=>'<div class="visitor-card" style="opacity:.7"><div class="visitor-info"><div class="visitor-name">'+esc(r.name)+' ('+r.group+')</div><div class="visitor-detail">'+destLabel(r.destination)+' · '+r.activity+'</div><div class="visitor-detail">In: '+formatDate(r.checkinTime)+' · '+t('label.checked_out')+': '+formatDate(r.checkoutTime)+'</div></div><span class="visitor-status status-out">'+t('status.out')+'</span></div>').join('')}
+}
+function exportData(){const r=loadData(),b=new Blob([JSON.stringify(r,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='granite-checkin-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(u)}
+function confirmClear(){if(confirm(t('confirm.clear'))){localStorage.removeItem(STORAGE_KEY);render()}}
+function updateConn(){const b=document.getElementById('connBadge'),on=navigator.onLine;b.className='offline-badge '+(on?'online':'offline');b.innerHTML='<span class="dot '+(on?'on':'off')+'"></span> '+(on?'online':'offline')}
+document.getElementById('fDest').addEventListener('change',function(){document.getElementById('destOtherWrap').style.display=this.value==='otro'?'block':'none'});
+document.getElementById('fReturn').value=new Date(Date.now()+86400000).toISOString().slice(0,10);
+window.addEventListener('online',updateConn);window.addEventListener('offline',updateConn);
+updateConn();render();
+</script>
+</body>
+</html>
