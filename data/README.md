@@ -5,39 +5,62 @@
 ---
 
 Este directorio es el corazón de Granite. Aquí se almacena, organiza y comparte
-todo el conocimiento generado sobre el territorio protegido: investigaciones
-científicas, registros de biodiversidad, protocolos de seguridad, rutas deportivas,
-normativas, datos de monitoreo y memoria comunitaria.
+todo el conocimiento generado sobre el territorio protegido.
 
-Cada carpeta corresponde a un dominio temático de la gestión territorial.
-Cada dominio tiene su propio `README.md` que explica qué contiene, cómo
-contribuir información y cómo acceder a lo que ya existe.
+La información se organiza en **cinco macro-dominios** que cubren todos los
+aspectos de la gestión de un área protegida a escala comunal.
 
 ---
 
-## Dominios temáticos
+## Organigrama de información territorial
 
-| Dominio | Carpeta | Qué contiene |
-|---|---|---|
-| **Administración** | `administracion/` | Gobernanza, organigramas, reglamentos internos, políticas operativas |
-| **Ciencia** | `ciencia/` | Investigaciones, expediciones, datasets, publicaciones científicas |
-| **Conservación** | `conservacion/` | Planes de manejo, restauración, especies prioritarias e invasoras, incendios |
-| **Monitoreo** | `monitoreo/` | Cámaras trampa, imágenes satelitales, datos meteorológicos, estado de senderos |
-| **Deportes y recreación** | `deportes-recreacion/` | Escalada, trekking, cabalgatas, trail running, kayak, protocolos por actividad |
-| **Seguridad** | `seguridad/` | Protocolos de emergencia, rescate, gestión de riesgo, zonas de peligro |
-| **Legal** | `legal/` | Propiedad, Derecho Real de Conservación, permisos, normativa ambiental, convenios |
-| **Comunidad** | `comunidad/` | Familias locales, arrieros, pueblos originarios, desarrollo económico, participación |
-| **Patrimonio** | `patrimonio/` | Historia oral, conocimiento tradicional, sitios arqueológicos, rutas históricas |
-| **Infraestructura** | `infraestructura/` | Senderos, señalética, saneamiento, conectividad, energía, edificaciones |
-| **Visitantes** | `visitantes/` | Educación ambiental, capacidad de carga, reservas, interpretación, voluntariado |
-| **Territorio** | `territorio/` | Cartografía, límites, uso de suelo, cuencas hidrográficas, zonificación |
+### I. Conservación y ciencia
+*La misión: entender y proteger los ecosistemas del territorio*
+
+| Carpeta | Contenido |
+|---|---|
+| `ciencia/` | Investigaciones, expediciones, datasets, publicaciones científicas |
+| `monitoreo/` | Cámaras trampa, imágenes satelitales, datos meteorológicos, estado de senderos |
+| `conservacion/` | Planes de manejo, restauración, especies prioritarias e invasoras, incendios |
+
+### II. Gestión operativa
+*Cómo funciona el área protegida día a día*
+
+| Carpeta | Contenido |
+|---|---|
+| `administracion/` | Gobernanza, organigramas, reglamentos internos, políticas operativas |
+| `seguridad/` | Protocolos de emergencia, rescate, gestión de riesgo, zonas de peligro |
+| `infraestructura/` | Senderos, señalética, saneamiento, conectividad, energía, edificaciones |
+| `visitantes/` | Educación ambiental, capacidad de carga, reservas, interpretación, voluntariado |
+
+### III. Actividades y recreación
+*Lo que se puede hacer al aire libre en el territorio y cómo hacerlo*
+
+| Carpeta | Contenido |
+|---|---|
+| `deportes-recreacion/` | Escalada, trekking, cabalgatas, trail running, kayak, protocolos por actividad |
+
+### IV. Territorio y marco jurídico
+*El soporte espacial, normativo e institucional*
+
+| Carpeta | Contenido |
+|---|---|
+| `territorio/` | Cartografía, límites, uso de suelo, cuencas hidrográficas, zonificación |
+| `legal/` | Propiedad, DRC, permisos, normativa ambiental, convenios, ordenanza comunal |
+
+### V. Comunidad y patrimonio
+*Las personas que habitan, cuidan y dan sentido al territorio*
+
+| Carpeta | Contenido |
+|---|---|
+| `comunidad/` | Familias locales, arrieros, pueblos originarios, desarrollo económico, participación |
+| `patrimonio/` | Historia oral, conocimiento tradicional, prácticas de cultivo, arqueología, rutas históricas |
 
 ---
 
 ## Cómo contribuir información
 
-Cualquier persona puede aportar datos, documentos o conocimiento a este repositorio.
-El proceso es el mismo para todos los dominios:
+Cualquier persona puede aportar datos, documentos o conocimiento.
 
 **Opción 1 — Desde GitHub (recomendada)**
 
@@ -48,60 +71,133 @@ El proceso es el mismo para todos los dominios:
 
 **Opción 2 — Por email**
 
-Si no usas GitHub, envía tu material a cochamohippiehub@gmail.com indicando:
-- Qué es el material
-- Quién lo generó
-- Si autorizas su publicación bajo licencia abierta
-
-Un administrador lo subirá al repositorio con los créditos correspondientes.
+Envía tu material a cochamohippiehub@gmail.com indicando qué es, quién lo
+generó y si autorizas su publicación bajo licencia abierta.
 
 ---
 
 ## Cómo acceder a la información
 
-Todo el contenido de este repositorio es público y gratuito.
+Todo el contenido es público y gratuito.
 
-- **Navegar online:** entra a cualquier carpeta desde GitHub y lee los archivos directamente
-- **Descargar todo:** clic en "Code → Download ZIP" en la página principal del repositorio
+- **Navegar online:** entra a cualquier carpeta desde GitHub
+- **Descargar todo:** clic en "Code → Download ZIP"
 - **Clonar con Git:** `git clone https://github.com/Cochamo-Hippie-Hub/Granite.git`
-- **Citar:** cada carpeta indica la autoría y licencia de sus contenidos
+- **Citar:** cada carpeta indica la autoría y licencia
 
 ---
 
 ## Estándares de formato
 
-Para mantener la información accesible y duradera:
-
-- **Texto:** Markdown (`.md`) como formato principal. Evitar formatos propietarios
+- **Texto:** Markdown (`.md`) como formato principal
 - **Datos tabulares:** CSV (`.csv`) con encabezados descriptivos
-- **Imágenes:** JPEG o PNG. Máximo 10 MB por archivo en GitHub. Para conjuntos grandes, usar links externos
-- **Datos geoespaciales:** GeoJSON (`.geojson`) cuando sea posible. Shapefiles en carpeta comprimida
-- **Archivos pesados (>100 MB):** subir a Zenodo u otro repositorio científico y enlazar desde aquí
-- **Idioma:** español o inglés. Ambos son bienvenidos
-
----
-
-## Estructura de una contribución tipo
-
-Cuando deposites información, sigue este modelo:
-
-```
-ciencia/geologia/nombre-del-estudio/
-├── README.md          ← descripción del estudio, autores, fecha, licencia
-├── datos/             ← archivos de datos (CSV, GeoJSON, imágenes)
-├── resultados/        ← figuras, mapas, modelos
-└── publicacion.pdf    ← artículo o informe si existe (o link externo)
-```
-
-El `README.md` de cada contribución es obligatorio. Es lo que permite que otra
-persona entienda qué hay en la carpeta sin tener que abrir cada archivo.
+- **Imágenes:** JPEG o PNG, máximo 10 MB por archivo
+- **Datos geoespaciales:** GeoJSON (`.geojson`) preferido
+- **Archivos pesados (>100 MB):** subir a Zenodo y enlazar desde aquí
+- **Idioma:** español o inglés, ambos bienvenidos
 
 ---
 
 ## Licencia
 
-Salvo indicación contraria de los autores, todo el contenido de este directorio
-se publica bajo [Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+Salvo indicación contraria, todo el contenido se publica bajo
+[Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
-Los autores pueden especificar una licencia diferente para sus contribuciones
-indicándolo en el `README.md` de su carpeta.
+---
+---
+
+# Territorial knowledge repository
+
+This directory is the heart of Granite. It stores, organizes, and shares all
+knowledge generated about the protected territory.
+
+Information is organized in **five macro-domains** covering all aspects of
+managing a protected area at municipal scale.
+
+---
+
+## Territorial information architecture
+
+### I. Conservation and science
+*The mission: understand and protect the territory's ecosystems*
+
+| Folder | Contents |
+|---|---|
+| `ciencia/` | Research, expeditions, datasets, scientific publications |
+| `monitoreo/` | Camera traps, satellite imagery, weather data, trail conditions |
+| `conservacion/` | Management plans, restoration, priority and invasive species, fire |
+
+### II. Operations management
+*How the protected area works day to day*
+
+| Folder | Contents |
+|---|---|
+| `administracion/` | Governance, org charts, internal regulations, operational policies |
+| `seguridad/` | Emergency protocols, search and rescue, risk management, hazard zones |
+| `infraestructura/` | Trails, signage, sanitation, connectivity, energy, buildings |
+| `visitantes/` | Environmental education, carrying capacity, reservations, volunteering |
+
+### III. Activities and recreation
+*What you can do outdoors in the territory and how to do it*
+
+| Folder | Contents |
+|---|---|
+| `deportes-recreacion/` | Climbing, trekking, horseback, trail running, kayak, activity protocols |
+
+### IV. Territory and legal framework
+*The spatial, regulatory, and institutional foundation*
+
+| Folder | Contents |
+|---|---|
+| `territorio/` | Cartography, boundaries, land use, watersheds, zoning |
+| `legal/` | Property, Conservation Easements, permits, environmental law, municipal ordinances |
+
+### V. Community and heritage
+*The people who inhabit, care for, and give meaning to the territory*
+
+| Folder | Contents |
+|---|---|
+| `comunidad/` | Local families, muleteers, indigenous peoples, economic development, participation |
+| `patrimonio/` | Oral history, traditional knowledge, farming practices, archaeology, historic trails |
+
+---
+
+## How to contribute
+
+Anyone can contribute data, documents, or knowledge.
+
+**Option 1 — Via GitHub (recommended)**
+
+1. Fork this repository
+2. Add your material in the corresponding folder
+3. Include a `README.md` describing: what it is, who generated it, when, under what license
+4. Submit a Pull Request
+
+**Option 2 — By email**
+
+Send your material to cochamohippiehub@gmail.com with what it is, who
+generated it, and whether you authorize open-license publication.
+
+---
+
+## How to access
+
+All content is public and free. Browse online, download as ZIP, or clone with Git.
+
+---
+
+## Format standards
+
+- **Text:** Markdown (`.md`) as primary format
+- **Tabular data:** CSV (`.csv`) with descriptive headers
+- **Images:** JPEG or PNG, max 10 MB per file
+- **Geospatial:** GeoJSON (`.geojson`) preferred
+- **Large files (>100 MB):** upload to Zenodo and link from here
+- **Language:** Spanish or English, both welcome
+
+---
+
+## License
+
+Unless otherwise noted, all content is published under
+[Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
