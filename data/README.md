@@ -4,200 +4,156 @@
 
 ---
 
-Este directorio es el corazón de Granite. Aquí se almacena, organiza y comparte
-todo el conocimiento generado sobre el territorio protegido.
+Este directorio organiza todo el conocimiento generado sobre el territorio
+protegido. Se estructura en dos ejes: **dominios** (qué es la información)
+y **capas transversales** (cómo se describe y conecta la información).
 
-La información se organiza en **cinco macro-dominios** que cubren todos los
-aspectos de la gestión de un área protegida a escala comunal.
-
----
-
-## Organigrama de información territorial
-
-### I. Conservación y ciencia
-*La misión: entender y proteger los ecosistemas del territorio*
-
-| Carpeta | Contenido |
-|---|---|
-| `ciencia/` | Investigaciones, expediciones, datasets, publicaciones científicas |
-| `monitoreo/` | Cámaras trampa, imágenes satelitales, datos meteorológicos, estado de senderos |
-| `conservacion/` | Planes de manejo, restauración, especies prioritarias e invasoras, incendios |
-
-### II. Gestión operativa
-*Cómo funciona el área protegida día a día*
-
-| Carpeta | Contenido |
-|---|---|
-| `administracion/` | Gobernanza, organigramas, reglamentos internos, políticas operativas |
-| `seguridad/` | Protocolos de emergencia, rescate, gestión de riesgo, zonas de peligro |
-| `infraestructura/` | Senderos, señalética, saneamiento, conectividad, energía, edificaciones |
-| `visitantes/` | Educación ambiental, capacidad de carga, reservas, interpretación, voluntariado |
-
-### III. Actividades y recreación
-*Lo que se puede hacer al aire libre en el territorio y cómo hacerlo*
-
-| Carpeta | Contenido |
-|---|---|
-| `deportes-recreacion/` | Escalada, trekking, cabalgatas, trail running, kayak, protocolos por actividad |
-
-### IV. Territorio y marco jurídico
-*El soporte espacial, normativo e institucional*
-
-| Carpeta | Contenido |
-|---|---|
-| `territorio/` | Cartografía, límites, uso de suelo, cuencas hidrográficas, zonificación |
-| `legal/` | Propiedad, DRC, permisos, normativa ambiental, convenios, ordenanza comunal |
-
-### V. Comunidad y patrimonio
-*Las personas que habitan, cuidan y dan sentido al territorio*
-
-| Carpeta | Contenido |
-|---|---|
-| `comunidad/` | Familias locales, arrieros, pueblos originarios, desarrollo económico, participación |
-| `patrimonio/` | Historia oral, conocimiento tradicional, prácticas de cultivo, arqueología, rutas históricas |
+Esta separación es el principio estructural del sistema. Si no se respeta,
+el repositorio se rompe por duplicación.
 
 ---
 
-## Cómo contribuir información
+## I. Dominios
 
-Cualquier persona puede aportar datos, documentos o conocimiento.
+### 1. Conservación y sistemas ecológicos
+*Base científica y ecológica del territorio*
 
-**Opción 1 — Desde GitHub (recomendada)**
+| Subcarpeta | Contenido |
+|---|---|
+| `1-conservacion/conocimiento/` | Geología, flora, fauna, hidrología, clima |
+| `1-conservacion/monitoreo/` | Cámaras trampa, sensores, satélite, terreno |
+| `1-conservacion/gestion-ecologica/` | Planes de manejo, restauración, especies prioritarias, invasoras |
+| `1-conservacion/riesgos/` | Incendios, eventos climáticos, remociones, amenazas |
 
-1. Haz un fork de este repositorio
-2. Agrega tu material en la carpeta correspondiente
-3. Incluye un archivo `README.md` que describa: qué es, quién lo generó, cuándo, bajo qué licencia
-4. Envía un Pull Request
+### 2. Gestión del área
+*Cómo funciona el territorio en la práctica*
 
-**Opción 2 — Por email**
+| Subcarpeta | Contenido |
+|---|---|
+| `2-gestion/gobernanza/` | Roles, protocolos, toma de decisiones |
+| `2-gestion/seguridad/` | Rescate, evacuación, incidentes |
+| `2-gestion/infraestructura/` | Senderos, puentes, sanitarios, señalética, conectividad |
+| `2-gestion/uso-publico/` | Visitantes, reservas, capacidad de carga |
+| `2-gestion/operacion/` | Guardaparques, voluntariado, logística diaria |
 
-Envía tu material a cochamohippiehub@gmail.com indicando qué es, quién lo
-generó y si autorizas su publicación bajo licencia abierta.
+### 3. Actividades y recreación
+*Cómo se vive el territorio*
+
+| Subcarpeta | Contenido |
+|---|---|
+| `3-actividades/montana/` | Trekking, escalada, trail running |
+| `3-actividades/ecuestres/` | Arriería, cabalgatas |
+| `3-actividades/agua/` | Kayak, ríos, cruces |
+| `3-actividades/cultura-acceso/` | Ética, Leave No Trace, comportamiento visitante |
+| `3-actividades/info-practica/` | Rutas, topos, tiempos, dificultad |
+
+### 4. Base territorial, normativa e institucional
+*El soporte duro del sistema*
+
+| Subcarpeta | Contenido |
+|---|---|
+| `4-territorio/cartografia/` | Mapas, límites, cuencas, capas GIS |
+| `4-territorio/propiedad/` | Dominio, servidumbres, DRC, superposiciones |
+| `4-territorio/normativa/` | Permisos, regulaciones, ordenanzas, legislación |
+| `4-territorio/institucional/` | FCP, CPP, convenios, gobernanza formal |
+
+### 5. Comunidad, historia y patrimonio
+*Dimensión humana y cultural*
+
+| Subcarpeta | Contenido |
+|---|---|
+| `5-comunidad/habitantes/` | Familias, arrieros, residentes |
+| `5-comunidad/practicas/` | Uso del territorio, tradiciones productivas |
+| `5-comunidad/historia/` | Ocupación, relatos, hitos |
+| `5-comunidad/patrimonio/` | Arqueología, rutas históricas, cultura material |
+
+### 6. Economía territorial
+
+| Subcarpeta | Contenido |
+|---|---|
+| `6-economia/servicios/` | Campings, arrieros, guías |
+| `6-economia/turismo/` | Flujo, demanda, comportamiento |
+| `6-economia/productivas/` | Actividades productivas compatibles, uso sustentable |
+| `6-economia/financiamiento/` | Endowment, ingresos, tarifas |
 
 ---
 
-## Cómo acceder a la información
+## II. Capas transversales
 
-Todo el contenido es público y gratuito.
+Cada pieza de información debe llevar estos metadatos. Son las capas
+que convierten el repositorio en un sistema inteligente.
 
-- **Navegar online:** entra a cualquier carpeta desde GitHub
-- **Descargar todo:** clic en "Code → Download ZIP"
-- **Clonar con Git:** `git clone https://github.com/Cochamo-Hippie-Hub/Granite.git`
-- **Citar:** cada carpeta indica la autoría y licencia
+| Capa | Qué describe | Valores posibles |
+|---|---|---|
+| **A. Ubicación** | Dónde ocurre | Coordenadas, polígono, ruta, punto, sector, cuenca, predio |
+| **B. Escala** | A qué nivel aplica | Sitio puntual, sendero, sector, valle, cuenca, territorio completo |
+| **C. Temporalidad** | Cuándo | Fecha específica, período, histórico, estado actual, proyección |
+| **D. Fuente** | De dónde viene | Documento técnico, terreno, sensor, comunidad, institución, publicación |
+| **E. Actor** | Quién está involucrado | Visitante, habitante, operador, institución, investigador |
+| **F. Tipo de contenido** | Qué formato tiene | Mapa, informe, ficha, imagen, audio, video, dataset, norma |
+| **G. Validación** | Qué tan confiable es | Validado técnico, validado comunitario, no validado, en revisión |
+
+### Implementación en GitHub
+
+Las capas se implementan como YAML frontmatter en el `README.md` de cada
+contribución:
+
+```yaml
+---
+ubicacion: Anfiteatro, confluencia Río La Junta
+coordenadas: "-41.50, -72.00"
+escala: sector
+temporalidad: 2026-01-15 / 2026-02-28
+fuente: publicacion-cientifica
+actor: investigador
+tipo: dataset
+validacion: validado-tecnico
+---
+```
 
 ---
 
-## Estándares de formato
+## III. Reglas de diseño
 
-- **Texto:** Markdown (`.md`) como formato principal
-- **Datos tabulares:** CSV (`.csv`) con encabezados descriptivos
-- **Imágenes:** JPEG o PNG, máximo 10 MB por archivo
-- **Datos geoespaciales:** GeoJSON (`.geojson`) preferido
-- **Archivos pesados (>100 MB):** subir a Zenodo y enlazar desde aquí
-- **Idioma:** español o inglés, ambos bienvenidos
+**1. Una pieza, un lugar en el árbol.**
+Un contenido puede pertenecer a múltiples dominios conceptualmente.
+Se resuelve con capas, no duplicando archivos.
+
+**2. El árbol no crece hacia los lados.**
+Evitar subcategorías infinitas. El crecimiento ocurre en metadatos,
+no en carpetas.
+
+**3. Primero ubicación, después contenido.**
+En un repositorio territorial, lo espacial manda. Todo debe poder mapearse.
+
+**4. Distinguir entre:**
+- estructura del territorio (dominio 4)
+- uso del territorio (dominios 2, 3, 6)
+- conocimiento del territorio (dominios 1, 5)
+
+**5. No todo es "ciencia".**
+El conocimiento de terreno — arrieros, rutas, historia — es estructural,
+no anecdótico.
+
+---
+
+## Cómo contribuir
+
+1. Identifica el dominio y subcarpeta correspondiente
+2. Crea una carpeta con nombre descriptivo
+3. Incluye un `README.md` con el frontmatter YAML de las 7 capas
+4. Envía un Pull Request o escribe a cochamohippiehub@gmail.com
+
+---
+
+## Cómo acceder
+
+Todo el contenido es público y gratuito. Navega las carpetas en GitHub,
+descarga con ZIP, o clona con Git.
 
 ---
 
 ## Licencia
 
 Salvo indicación contraria, todo el contenido se publica bajo
-[Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
-
----
----
-
-# Territorial knowledge repository
-
-This directory is the heart of Granite. It stores, organizes, and shares all
-knowledge generated about the protected territory.
-
-Information is organized in **five macro-domains** covering all aspects of
-managing a protected area at municipal scale.
-
----
-
-## Territorial information architecture
-
-### I. Conservation and science
-*The mission: understand and protect the territory's ecosystems*
-
-| Folder | Contents |
-|---|---|
-| `ciencia/` | Research, expeditions, datasets, scientific publications |
-| `monitoreo/` | Camera traps, satellite imagery, weather data, trail conditions |
-| `conservacion/` | Management plans, restoration, priority and invasive species, fire |
-
-### II. Operations management
-*How the protected area works day to day*
-
-| Folder | Contents |
-|---|---|
-| `administracion/` | Governance, org charts, internal regulations, operational policies |
-| `seguridad/` | Emergency protocols, search and rescue, risk management, hazard zones |
-| `infraestructura/` | Trails, signage, sanitation, connectivity, energy, buildings |
-| `visitantes/` | Environmental education, carrying capacity, reservations, volunteering |
-
-### III. Activities and recreation
-*What you can do outdoors in the territory and how to do it*
-
-| Folder | Contents |
-|---|---|
-| `deportes-recreacion/` | Climbing, trekking, horseback, trail running, kayak, activity protocols |
-
-### IV. Territory and legal framework
-*The spatial, regulatory, and institutional foundation*
-
-| Folder | Contents |
-|---|---|
-| `territorio/` | Cartography, boundaries, land use, watersheds, zoning |
-| `legal/` | Property, Conservation Easements, permits, environmental law, municipal ordinances |
-
-### V. Community and heritage
-*The people who inhabit, care for, and give meaning to the territory*
-
-| Folder | Contents |
-|---|---|
-| `comunidad/` | Local families, muleteers, indigenous peoples, economic development, participation |
-| `patrimonio/` | Oral history, traditional knowledge, farming practices, archaeology, historic trails |
-
----
-
-## How to contribute
-
-Anyone can contribute data, documents, or knowledge.
-
-**Option 1 — Via GitHub (recommended)**
-
-1. Fork this repository
-2. Add your material in the corresponding folder
-3. Include a `README.md` describing: what it is, who generated it, when, under what license
-4. Submit a Pull Request
-
-**Option 2 — By email**
-
-Send your material to cochamohippiehub@gmail.com with what it is, who
-generated it, and whether you authorize open-license publication.
-
----
-
-## How to access
-
-All content is public and free. Browse online, download as ZIP, or clone with Git.
-
----
-
-## Format standards
-
-- **Text:** Markdown (`.md`) as primary format
-- **Tabular data:** CSV (`.csv`) with descriptive headers
-- **Images:** JPEG or PNG, max 10 MB per file
-- **Geospatial:** GeoJSON (`.geojson`) preferred
-- **Large files (>100 MB):** upload to Zenodo and link from here
-- **Language:** Spanish or English, both welcome
-
----
-
-## License
-
-Unless otherwise noted, all content is published under
-[Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
