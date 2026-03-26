@@ -1,0 +1,52 @@
+name: CI — Territorial Indexer
+
+on:
+  push:
+    paths:
+      - 'src/territorial_index.py'
+      - 'tests/**'
+  pull_request:
+    paths:
+      - 'src/territorial_index.py'
+      - 'tests/**'
+
+jobs:
+  test-indexer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run indexer against test data
+        run: |
+          python src/territorial_index.py tests/ --format full --verbose
+          echo "---"
+          echo "Compact output:"
+          python src/territorial_index.py tests/ --format compact
+
+      - name: Verify JSON output is valid
+        run: |
+          python src/territorial_index.py tests/ | python -m json.tool > /dev/null
+          echo "✅ JSON output is valid"
+
+      - name: Verify key fields are extracted
+        run: |
+          OUTPUT=$(python src/territorial_index.py tests/ --format full)
+          echo "$OUTPUT" | python3 -c "
+          import sys, json
+          data = json.load(sys.stdin)
+          docs = data['documents']
+          assert len(docs) > 0, 'No documents indexed'
+          doc = docs[0]
+          assert doc.get('participants'), 'No participants extracted'
+          assert doc.get('agreements'), 'No agreements extracted'
+          assert doc.get('action_items'), 'No action items extracted'
+          assert doc.get('themes'), 'No themes classified'
+          stats = data['stats']
+          assert stats['total_documents'] > 0
+          print(f'✅ {stats[\"total_documents\"]} doc(s), {stats[\"unique_participants\"]} participants, {stats[\"total_agreements\"]} agreements, {stats[\"total_action_items\"]} action items')
+          "

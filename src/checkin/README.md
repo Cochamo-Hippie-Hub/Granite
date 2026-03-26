@@ -32,10 +32,9 @@ talking to each other:
 4. **The Santuario de la Naturaleza** (~3,000 ha on the north side of the
    Cochamó River) — administered by the OVC, with its own access needs.
 
-5. **Fundo Pucheguín** (132,876 ha on the south side) — the conservation
-   territory managed by Fundación Conserva Pucheguín, which needs visitor
-   data for safety and management but has no digital connection to the
-   Visitor Center.
+5. **The conservation territory** (132,876 ha on the south side) — the protected
+   landscape that needs visitor data for safety and management but has no
+   digital connection to the Visitor Center.
 
 The result: no one has a complete picture. A visitor can enter the valley,
 hike for five days into a remote circuit with zero connectivity, and if
@@ -186,10 +185,9 @@ cinco sistemas operan en el valle sin comunicarse entre sí:
 4. **El Santuario de la Naturaleza** (~3.000 ha en el lado norte del río Cochamó)
    — administrado por la OVC, con sus propias necesidades de acceso.
 
-5. **Fundo Pucheguín** (132.876 ha en el lado sur) — el territorio de conservación
-   administrado por la Fundación Conserva Pucheguín, que necesita datos de
-   visitantes para seguridad y gestión pero no tiene conexión digital con el
-   Centro de Visitantes.
+5. **El territorio de conservación** (132.876 ha en el lado sur) — el paisaje
+   protegido que necesita datos de visitantes para seguridad y gestión pero
+   no tiene conexión digital con el Centro de Visitantes.
 
 Personas han muerto en este territorio bajo estas condiciones.
 

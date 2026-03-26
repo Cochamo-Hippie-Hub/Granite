@@ -60,7 +60,7 @@ Traducir las necesidades en arquitectura técnica.
 - Centro de Visitantes: ve todo (registro + campings + arrieros + alertas)
 - Camping individual: ve solo su capacidad y sus reservas
 - Arrieros: ven solo solicitudes de transporte y calendario
-- FCP/CPP: dashboard de lectura con estadísticas agregadas
+- Conservation management: dashboard de lectura con estadísticas agregadas
 - **Entregable:** mockups simples publicados como Issue en Granite
 
 ### Validación con actores (semana 11)
@@ -130,7 +130,7 @@ Lanzamiento operativo para la temporada.
 ### Integración completa (semana 28)
 - Los cinco campings conectados al sistema
 - Arrieros conectados al sistema
-- Dashboard de lectura disponible para OVC y FCP
+- Dashboard de lectura disponible para OVC y gestión del territorio
 
 ### Temporada operativa (diciembre 2026 en adelante)
 - Sistema en producción
@@ -159,8 +159,8 @@ Cualquier persona puede auditar el proceso, contribuir código, o replicar
 el sistema en otro territorio.
 
 **El sistema no tiene propietario.** Licencia MIT. Código abierto. Cada actor
-alimenta sus datos y consume lo que necesita. CPP/FCP dan soporte técnico,
-no control institucional.
+alimenta sus datos y consume lo que necesita. El soporte técnico es
+comunitario, no institucional.
 
 ---
 
@@ -169,7 +169,7 @@ no control institucional.
 | Recurso | Fuente | Costo |
 |---|---|---|
 | Desarrollo de software | CHH (open source + contribuciones voluntarias) | $0 |
-| Articulación con actores | Andrés Amengual (4-6 hrs/semana) | Tiempo personal |
+| Articulación con actores | CHH coordinator (4-6 hrs/semana) | Tiempo voluntario |
 | Dispositivo en Centro de Visitantes | Ya existe (laptop/tablet) | $0 |
 | Conectividad Starlink | Ya existe en el Centro | $0 |
 | Hosting del servidor de sync | Firebase/Supabase tier gratuito | $0 |

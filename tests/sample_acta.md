@@ -1,10 +1,10 @@
 # Acta Reunión Círculo Territorial — 15 de enero de 2025
 
 ## Participantes:
-- Tatiana Sandoval (Coordinadora Territorial)
-- Sofía Riveros (Coordinadora Comunitaria)
-- Andrés Amengual (Asesor Legal)
-- Rodrigo Hevia (GIS y Conservación)
+- María López (Coordinadora Territorial)
+- Carolina Fuentes (Coordinadora Comunitaria)
+- Javier Muñoz (Asesor Legal)
+- Pedro Soto (GIS y Conservación)
 
 ## Contexto
 
@@ -39,10 +39,10 @@ que acceden a zonas de bivouac sin registro. Ver #7.
 
 ## Tareas pendientes
 
-- [ ] Enviar recordatorio a encuestadores del sector Llanada Grande — Sofía Riveros
-- [ ] Reservar sedes de talleres en Cochamó y Río Puelo — Tatiana Sandoval
-- [ ] Redactar borrador de protocolo de check-in para escaladores — Andrés Amengual
-- [x] Consolidar datos preliminares de encuesta en dashboard — Rodrigo Hevia
+- [ ] Enviar recordatorio a encuestadores del sector Llanada Grande — Carolina Fuentes
+- [ ] Reservar sedes de talleres en Cochamó y Río Puelo — María López
+- [ ] Redactar borrador de protocolo de check-in para escaladores — Javier Muñoz
+- [x] Consolidar datos preliminares de encuesta en dashboard — Pedro Soto
 
 ## Próxima reunión
 22 de enero de 2025, 10:00 hrs.
