@@ -1,0 +1,6 @@
+medicion_id,rumbo,buzamiento,familia,sector,fecha,observaciones
+D-001,N30E,80SE,F1,Anfiteatro central,2026-01-18,Diaclasa dominante con relleno de cuarzo
+D-002,N28E,78SE,F1,Anfiteatro central,2026-01-18,Paralela a D-001 a 2m distancia
+D-003,N60W,75NE,F2,Anfiteatro oeste,2026-01-19,Sistema conjugado intersecta F1
+D-004,N10W,85SW,F3,Confluencia La Junta,2026-01-20,Subvertical con apertura 3-5 cm
+D-005,N32E,82SE,F1,Anfiteatro este,2026-01-21,Sistema de fisura principal ruta escalada

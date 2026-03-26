@@ -1,0 +1,6 @@
+punto_id,este_utm18s,norte_utm18s,elevacion_m,precision_cm,fecha,descripcion
+GCP-001,717234.5,5397812.3,342.7,2.1,2026-01-15,Base talud sector oeste Anfiteatro
+GCP-002,717456.8,5397634.1,455.2,1.8,2026-01-15,Repisa intermedia pared central
+GCP-003,717189.2,5397901.5,298.4,2.4,2026-01-16,Margen río confluencia La Junta
+GCP-004,717612.0,5397478.9,612.8,3.1,2026-01-16,Cresta superior sector este
+GCP-005,717301.7,5397745.6,378.3,1.9,2026-01-17,Plataforma camping base
