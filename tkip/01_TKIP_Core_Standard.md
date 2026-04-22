@@ -126,7 +126,7 @@ contribution:
   source:
     contributor_id: string           # id estable y anónimo por canal
     contributor_display: string | null
-    contributor_role: enum           # ver 4.4
+    contributor_role: [enum]         # ver 4.4 (uno o más)
     contributor_organization: string | null
     consent:
       level: enum                    # ver 4.4
@@ -136,6 +136,14 @@ contribution:
       scope: [enum]                  # ver 4.4 (uno o más)
       revocable: boolean
       expires_at: datetime | null
+    dialog:                          # opcional — diálogo pre-ingesta
+      exchanges:
+        - at: datetime
+          actor: enum                # contribuyente | facilitador
+          medium: enum               # whatsapp | email | voz | presencial
+          note: string
+      facilitator_id: string | null
+      closed_at: datetime | null
 
   # ─── Canal de entrada ──────────────────────────────────────
   channel:
@@ -251,6 +259,8 @@ vecino | operador | arriero | escalador | investigador | cronista |
 visitante | guardaparque | asesor_legal | equipo_gestion | 
 autoridad | organizacion | otro
 ```
+
+**Nota sobre multiplicidad** (v1.2+): un CO PUEDE declarar múltiples roles si el aporte emerge de más de una posición situacional del contribuyente (por ejemplo, un arriero que además es vecino antiguo con vínculo familiar al territorio). La identidad situacional —desde qué rol se está aportando este CO específico— tiene precedencia sobre la identidad estable del contribuyente. Una misma persona PUEDE contribuir desde un conjunto distinto de roles en CO distintos.
 
 #### 4.4.2 `source.consent.level`
 
@@ -508,6 +518,8 @@ Los siguientes eventos son normativos. Una implementación conforme NO DEBE intr
 | `retracted` | Consejo Curatorial | retirado post-publicación; motivo obligatorio |
 | `republished` | curador humano | vuelto a publicar tras retracción |
 | `consent_revoked` | sistema o curador | contribuyente revocó consentimiento |
+| `dialog_opened` | sistema o facilitador | se inició diálogo pre-ingesta con el contribuyente |
+| `dialog_closed` | sistema o facilitador | se cerró diálogo pre-ingesta; CO pasa a triage/curación |
 | `disputed` | sistema o curador | entró en proceso de disputa (`[05:*]`) |
 | `dispute_resolved` | instancia de disputa | disputa cerrada con decisión |
 

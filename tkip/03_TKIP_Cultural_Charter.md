@@ -99,6 +99,8 @@ El sistema devuelve al territorio lo que el territorio le aporta. Las formas de 
 
 Un repositorio que acumula y no devuelve no es conservación de conocimiento; es captura.
 
+La devolución al contribuyente individual, cuando procede, asume formas cuidadas: rastro visible del destino de su aporte en el repositorio, eco cuando es consultado o combinado con otros. El principio rector es el del arbolito de navidad comunitario: cada contribución deja huella visible-pero-no-estridente en un conjunto que pertenece al territorio, no a quien aportó. El reconocimiento es cualitativo, nunca métrico: un repositorio que clasifica contribuyentes por volumen ha traicionado el principio.
+
 ### 3.3 Principio de no instrumentalización
 
 El sistema no existe para que donantes, gestores, autoridades o terceros instrumentalicen a la comunidad. La comunidad aporta conocimiento porque reconoce valor en hacerlo, no porque el sistema sea un vehículo para que otros cumplan sus metas.

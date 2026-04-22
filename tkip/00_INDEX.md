@@ -32,7 +32,8 @@ TKIP v1.2/
 │
 ├── 06_TKIP_Pilot_Profile_Cochamo.md     [operativo — piloto austero]
 │
-└── EXT_01_Normative_Instrument.md       [extension profile canónico]
+├── EXT_01_Normative_Instrument.md       [extension profile canónico]
+└── EXT_02_Reciprocity_Loop.md           [extension profile canónico — opcional]
 ```
 
 ---
@@ -104,6 +105,7 @@ Cada documento declara su propio estado. El consolidado a abril 2026 es:
 | 05 Dispute Layer | draft | requiere primera prueba jurisdiccional real |
 | 06 Pilot Profile Cochamó | draft | sujeto a adaptación durante ejecución |
 | EXT_01 Normative Instrument | stable | |
+| EXT_02 Reciprocity Loop | draft | requiere 6 meses de operación real para pasar a stable |
 
 "Stable" significa que el documento está cerrado para ajustes de diseño mayores. "Draft" significa que puede sufrir cambios estructurales antes del piloto.
 
@@ -111,7 +113,7 @@ Cada documento declara su propio estado. El consolidado a abril 2026 es:
 
 ## Principios editoriales del set
 
-Los siete documentos comparten disciplina editorial:
+Los ocho documentos comparten disciplina editorial:
 
 1. **Palabras normativas**: DEBE, DEBERÍA, PUEDE, NO DEBE, NO DEBERÍA se usan en versalita y tienen el mismo significado que en RFC 2119.
 2. **Enums**: todo valor controlado se declara explícitamente. No se admite valor implícito.
